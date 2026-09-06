@@ -6,6 +6,7 @@ A gallery of polished mini web applications. Every project lives in its own fold
 
 | App | Stack | What it does |
 |---|---|---|
+| Gravity Dots | HTML · CSS · JavaScript | Pointer-driven interactive particle field |
 | Pixel Bloom | HTML · CSS · JavaScript | Click-to-grow generative geometric garden |
 | Aurora Clock | HTML · CSS · JavaScript | Ambient clock with theme controls |
 | Focus Tiles | TypeScript · Vite | Visual focus-session timer |
@@ -18,7 +19,7 @@ A gallery of polished mini web applications. Every project lives in its own fold
 
 ## Run a zero-install app
 
-Open `pixel-bloom/index.html` or `aurora-clock/index.html` directly in a browser.
+Open `gravity-dots/index.html`, `pixel-bloom/index.html`, or `aurora-clock/index.html` directly in a browser.
 
 Other folders include their own short setup notes. These are intentionally small experiments—not production services.
 
