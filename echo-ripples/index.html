@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Echo Ripples</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;font-family:Inter,ui-sans-serif,system-ui;background:#08090d;color:#f5f5f7}body{display:grid;place-items:center}.orb{position:fixed;width:44vmax;height:44vmax;border-radius:50%;background:radial-gradient(circle,#7c5cff55,transparent 68%);filter:blur(18px);animation:float 8s ease-in-out infinite alternate;pointer-events:none}@keyframes float{to{transform:translate(12vw,-10vh) scale(1.2)}}main{text-align:center;z-index:2;padding:24px;pointer-events:none}h1{font-size:clamp(3rem,9vw,8rem);letter-spacing:-.07em;margin:0;font-weight:760}p{opacity:.55;font-size:clamp(.9rem,2vw,1.1rem)}.badge{display:inline-block;border:1px solid #ffffff20;background:#ffffff0b;backdrop-filter:blur(14px);padding:8px 12px;border-radius:999px;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.ripple{position:fixed;border:1px solid #ffffff80;border-radius:50%;width:10px;height:10px;transform:translate(-50%,-50%);pointer-events:none;animation:r 1.4s cubic-bezier(.1,.7,.2,1) forwards}@keyframes r{to{width:38vmin;height:38vmin;opacity:0;border-width:0}}footer{position:fixed;bottom:20px;font-size:12px;opacity:.3;z-index:2}@media(max-width:600px){h1{font-size:18vw}}
+</style>
+</head><body><div class="orb"></div><main><span class="badge">Interactive experiment</span><h1>Echo<br>Ripples</h1><p>Tap anywhere. Leave an echo.</p></main><footer>HTML · CSS · JavaScript — zero dependencies</footer><script>
+const make=(x,y)=>{for(let i=0;i<3;i++)setTimeout(()=>{const e=document.createElement('i');e.className='ripple';e.style.left=x+'px';e.style.top=y+'px';e.style.animationDelay=(i*.04)+'s';document.body.append(e);setTimeout(()=>e.remove(),1600)},i*110)};addEventListener('pointerdown',e=>make(e.clientX,e.clientY));addEventListener('pointermove',e=>{if(e.buttons)make(e.clientX,e.clientY)});
+</script></body></html>
