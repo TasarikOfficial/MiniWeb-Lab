@@ -6,6 +6,7 @@ A gallery of polished mini web applications. Every project lives in its own fold
 
 | App | Stack | What it does |
 |---|---|---|
+| Signal Orbit | HTML · CSS · JavaScript | Interactive orbital system with pointer-bent motion and tap pulses |
 | Tilt Card | HTML · CSS · JavaScript | Pointer-reactive 3D glass card with shifting light |
 | Light Trails | HTML · CSS · JavaScript | Draw fading neon trails with pointer or touch |
 | Echo Ripples | HTML · CSS · JavaScript | Tap-to-create layered ambient ripple waves |
@@ -22,7 +23,7 @@ A gallery of polished mini web applications. Every project lives in its own fold
 
 ## Run a zero-install app
 
-Open `tilt-card/index.html`, `light-trails/index.html`, `echo-ripples/index.html`, `gravity-dots/index.html`, `pixel-bloom/index.html`, or `aurora-clock/index.html` directly in a browser.
+Open `signal-orbit/index.html`, `tilt-card/index.html`, `light-trails/index.html`, `echo-ripples/index.html`, `gravity-dots/index.html`, `pixel-bloom/index.html`, or `aurora-clock/index.html` directly in a browser.
 
 Other folders include their own short setup notes. These are intentionally small experiments—not production services.
 
