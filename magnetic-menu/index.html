@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Magnetic Menu</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,sans-serif;background:#070707;color:#f5f5f2}body{min-height:100vh;overflow:hidden;background:radial-gradient(circle at 50% 40%,#171717 0,#090909 45%,#050505 100%)}
+.noise{position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(#fff 0.55px,transparent .65px);background-size:9px 9px;mask-image:linear-gradient(to bottom,#000,transparent 80%)}
+header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:24px 28px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#aaa;z-index:3}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#c8ff36;box-shadow:0 0 18px #c8ff36;margin-right:9px}
+main{min-height:100vh;display:grid;place-items:center;padding:76px 22px}.menu{width:min(900px,92vw)}.item{position:relative;display:flex;align-items:center;justify-content:space-between;padding:22px 4px;border-bottom:1px solid #2b2b2b;cursor:pointer;isolation:isolate;transition:border-color .25s}.item:first-child{border-top:1px solid #2b2b2b}.label{font-size:clamp(42px,8vw,104px);line-height:.88;letter-spacing:-.065em;font-weight:650;transition:color .2s;text-transform:uppercase}.num{font-size:12px;color:#666;align-self:flex-start;margin-top:8px}.orb{position:absolute;width:88px;height:88px;border-radius:50%;background:#c8ff36;filter:blur(1px);opacity:0;transform:translate(-50%,-50%) scale(.2);transition:opacity .2s,transform .22s;z-index:-1;box-shadow:0 0 55px #a8ff0080}.item:hover{border-color:#555}.item:hover .orb{opacity:1;transform:translate(-50%,-50%) scale(1)}.item:hover .label{color:#050505}
+.hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#666;white-space:nowrap}.flash{animation:flash .35s ease}@keyframes flash{50%{filter:brightness(2)}}
+@media(max-width:600px){header{padding:18px}.menu{width:100%}.item{padding:19px 2px}.orb{width:64px;height:64px}.hint{bottom:16px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body><div class="noise"></div><header><span><i class="dot"></i>Magnetic Menu</span><span>01 / Experiment</span></header><main><section class="menu" aria-label="Interactive menu"><div class="item" tabindex="0"><span class="label">Explore</span><span class="num">01</span><i class="orb"></i></div><div class="item" tabindex="0"><span class="label">Create</span><span class="num">02</span><i class="orb"></i></div><div class="item" tabindex="0"><span class="label">Launch</span><span class="num">03</span><i class="orb"></i></div><div class="item" tabindex="0"><span class="label">Repeat</span><span class="num">04</span><i class="orb"></i></div></section></main><div class="hint">Move your pointer · tap any row</div>
+<script>
+document.querySelectorAll('.item').forEach(item=>{const orb=item.querySelector('.orb');const move=e=>{const r=item.getBoundingClientRect();const p=e.touches?e.touches[0]:e;orb.style.left=(p.clientX-r.left)+'px';orb.style.top=(p.clientY-r.top)+'px'};item.addEventListener('pointermove',move);item.addEventListener('touchmove',move,{passive:true});item.addEventListener('click',()=>{item.classList.remove('flash');void item.offsetWidth;item.classList.add('flash')});item.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();item.click()}})});
+</script></body></html>
