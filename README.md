@@ -6,6 +6,7 @@ A gallery of polished mini web applications. Every project lives in its own fold
 
 | App | Stack | What it does |
 |---|---|---|
+| Tempo Tap | HTML · CSS · JavaScript | Tap a rhythm to estimate BPM with a reactive pulse display |
 | Magnetic Menu | HTML · CSS · JavaScript | Oversized navigation with a pointer-following magnetic neon highlight |
 | Prism Cursor | HTML · CSS · JavaScript | Pointer-reactive prism and light-beam experiment |
 | Kinetic Type | HTML · CSS · JavaScript | Pointer-reactive 3D typography experiment |
@@ -27,7 +28,7 @@ A gallery of polished mini web applications. Every project lives in its own fold
 
 ## Run a zero-install app
 
-Open `magnetic-menu/index.html`, `prism-cursor/index.html`, `kinetic-type/index.html`, `breath-space/index.html`, `signal-orbit/index.html`, `tilt-card/index.html`, `light-trails/index.html`, `echo-ripples/index.html`, `gravity-dots/index.html`, `pixel-bloom/index.html`, or `aurora-clock/index.html` directly in a browser.
+Open `tempo-tap/index.html`, `magnetic-menu/index.html`, `prism-cursor/index.html`, `kinetic-type/index.html`, `breath-space/index.html`, `signal-orbit/index.html`, `tilt-card/index.html`, `light-trails/index.html`, `echo-ripples/index.html`, `gravity-dots/index.html`, `pixel-bloom/index.html`, or `aurora-clock/index.html` directly in a browser.
 
 Other folders include their own short setup notes. These are intentionally small experiments—not production services.
 
