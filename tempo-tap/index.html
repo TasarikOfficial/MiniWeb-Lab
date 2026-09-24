@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tempo Tap — Find the beat</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;background:#08090c;color:#f7f7f2}body{min-height:100vh;display:grid;place-items:center;overflow:hidden}.glow{position:fixed;width:58vmax;height:58vmax;border-radius:50%;background:radial-gradient(circle,rgba(183,255,0,.18),transparent 65%);filter:blur(18px);transform:scale(var(--pulse,.65));transition:transform .12s ease;pointer-events:none}.wrap{position:relative;width:min(92vw,760px);text-align:center;padding:32px}.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#b7ff00;margin-bottom:28px}.bpm{font-size:clamp(96px,24vw,210px);font-weight:800;letter-spacing:-.08em;line-height:.78;font-variant-numeric:tabular-nums}.unit{margin-top:22px;font-size:14px;letter-spacing:.25em;color:#8d9199}.hint{margin:48px auto 0;max-width:440px;color:#a8abb2;line-height:1.6}.key{display:inline-grid;place-items:center;min-width:34px;height:28px;padding:0 9px;border:1px solid #383b42;border-bottom-width:3px;border-radius:7px;color:#fff;background:#121419}.meter{width:min(420px,80vw);height:2px;background:#24262c;margin:34px auto 0;overflow:hidden}.meter i{display:block;width:0;height:100%;background:#b7ff00;transition:width .15s}.reset{margin-top:24px;border:0;background:transparent;color:#656972;font:inherit;cursor:pointer;padding:10px}.reset:hover,.reset:focus-visible{color:#fff;outline:none}.tap{position:fixed;inset:0;border:0;background:transparent;cursor:pointer;z-index:0}.wrap{z-index:1;pointer-events:none}.reset{pointer-events:auto}@media(max-width:560px){.wrap{padding:20px}.hint{margin-top:38px;font-size:14px}}
+</style>
+</head>
+<body>
+<button class="tap" id="tap" aria-label="Tap to measure tempo"></button><div class="glow" id="glow"></div>
+<main class="wrap"><div class="eyebrow">Tempo Tap</div><div class="bpm" id="bpm">—</div><div class="unit">BEATS PER MINUTE</div><div class="meter"><i id="meter"></i></div><p class="hint">Tap anywhere to the rhythm — or press <span class="key">Space</span>. Four steady taps are usually enough.</p><button class="reset" id="reset">Reset tempo</button></main>
+<script>
+const bpmEl=document.querySelector('#bpm'),meter=document.querySelector('#meter'),glow=document.querySelector('#glow'),reset=document.querySelector('#reset');let taps=[];
+function pulse(){glow.style.setProperty('--pulse','1');setTimeout(()=>glow.style.setProperty('--pulse','.65'),110)}
+function addTap(){const now=performance.now();if(taps.length&&now-taps.at(-1)>2500)taps=[];taps.push(now);if(taps.length>8)taps.shift();pulse();if(taps.length>1){const gaps=taps.slice(1).map((t,i)=>t-taps[i]);const avg=gaps.reduce((a,b)=>a+b,0)/gaps.length;const bpm=Math.round(60000/avg);bpmEl.textContent=bpm;meter.style.width=Math.min(100,Math.max(4,(bpm/220)*100))+'%'}else{bpmEl.textContent='…';meter.style.width='4%'}}
+document.querySelector('#tap').addEventListener('pointerdown',addTap);document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();addTap()}});reset.addEventListener('click',e=>{e.stopPropagation();taps=[];bpmEl.textContent='—';meter.style.width='0'});
+</script>
+</body></html>
