@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Split Second — Reaction Test</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:#0b0d10;color:#f7f7f2;min-height:100svh;display:grid;place-items:center}.app{width:min(92vw,680px);text-align:center}.eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:.72rem;opacity:.55}.stage{margin-top:18px;min-height:420px;border:1px solid #2a2e35;border-radius:28px;display:grid;place-items:center;padding:32px;cursor:pointer;user-select:none;transition:.18s;background:#12151a;box-shadow:0 24px 80px #0007}.stage.ready{background:#f2ff61;color:#0b0d10;border-color:#f2ff61}.big{font-size:clamp(3rem,13vw,7rem);font-weight:800;letter-spacing:-.07em;line-height:.9}.hint{margin-top:18px;opacity:.62}.stats{display:flex;justify-content:center;gap:10px;margin-top:14px;flex-wrap:wrap}.pill{border:1px solid #2a2e35;border-radius:999px;padding:9px 14px;font-size:.86rem}.ready .hint{opacity:.7}@media(max-width:520px){.stage{min-height:62svh;border-radius:22px}}
+</style>
+</head>
+<body><main class="app"><div class="eyebrow">Split Second · reaction test</div><section class="stage" id="stage" role="button" tabindex="0" aria-label="Reaction test"><div><div class="big" id="big">READY?</div><div class="hint" id="hint">Tap anywhere to start</div></div></section><div class="stats"><span class="pill" id="best">Best —</span><span class="pill" id="tries">Attempts 0</span></div></main>
+<script>
+const stage=document.querySelector('#stage'),big=document.querySelector('#big'),hint=document.querySelector('#hint'),bestEl=document.querySelector('#best'),triesEl=document.querySelector('#tries');
+let state='idle',timer,start,best=null,tries=0;
+function reset(){clearTimeout(timer);state='idle';stage.classList.remove('ready');big.textContent='READY?';hint.textContent='Tap anywhere to start'}
+function act(){
+ if(state==='idle'){state='waiting';big.textContent='WAIT';hint.textContent='Don’t tap yet…';timer=setTimeout(()=>{state='go';start=performance.now();stage.classList.add('ready');big.textContent='NOW!';hint.textContent='Tap!'},900+Math.random()*2600)}
+ else if(state==='waiting'){clearTimeout(timer);state='idle';big.textContent='TOO SOON';hint.textContent='Tap to try again'}
+ else if(state==='go'){const ms=Math.round(performance.now()-start);tries++;best=best===null?ms:Math.min(best,ms);stage.classList.remove('ready');state='idle';big.textContent=ms+' ms';hint.textContent='Tap to go again';bestEl.textContent='Best '+best+' ms';triesEl.textContent='Attempts '+tries}
+}
+stage.addEventListener('pointerdown',act);stage.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();act()}});
+</script></body></html>
